@@ -65,7 +65,7 @@ Point2d Point2d::operator+= (const Point2d& a) {
 Point2d Point2d::operator-= (const Point2d& a) {
 
 	x -= a.x;
-	y -= a.y
+	y -= a.y;
 
 	return (*this); //it returns itself
 }
