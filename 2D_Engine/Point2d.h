@@ -10,10 +10,10 @@ public:
 
 public:
 
-	void setZero();
-	bool isZero() const; // Method to check whether the value of x and y is 0 or not
-	Point2d& negate(); // This method is not const, because it consists on changing the value of the variables (as it happens in setZero)
-	float distanceTo(const Point2d& a) const;
+	void SetZero();
+	bool IsZero() const; // Method to check whether the value of x and y is 0 or not
+	Point2d& Negate(); // This method is not const, because it consists on changing the value of the variables (as it happens in setZero)
+	float DistanceTo(const Point2d& a) const;
 
 	//Operators:
 

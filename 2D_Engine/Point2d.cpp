@@ -2,17 +2,17 @@
 #include "Point2d.h"
 
 
-bool Point2d::isZero() const {
+bool Point2d::IsZero() const {
 
 	return (x == 0.0f && y == 0.0f);
 }
 
-void Point2d::setZero() {
+void Point2d::SetZero() {
 
 	x = y = 0.0f;
 }
 
-Point2d& Point2d::negate() {
+Point2d& Point2d::Negate() {
 
 	x = -x;
 	y = -y;
@@ -20,7 +20,7 @@ Point2d& Point2d::negate() {
 	return(*this);
 }
 
-float Point2d::distanceTo(const Point2d& a) const{
+float Point2d::DistanceTo(const Point2d& a) const{
 
 	float vx, vy;
 	float distance;
