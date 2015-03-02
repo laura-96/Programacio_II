@@ -36,14 +36,13 @@ public:
 		return (strlen(str) + 1);
 	}
 
-	const char* GetString()const { return str; }
+	const char* GetString() const { return str; }
 
 public:
 
 	//Constructors:
 
 	String();
-	String(const char* cadena);
 	String(String& cadena);
 	String(const char *format, ...);
 

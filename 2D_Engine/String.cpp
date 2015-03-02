@@ -19,12 +19,6 @@ String::String(){
 	*/
 }
 
-String::String(const char* cadena){
-
-	size = strlen(cadena) + 1;
-	str = new char[size];
-	strcpy_s(str, size, cadena);
-}
 
 String::String(String& cadena){
 

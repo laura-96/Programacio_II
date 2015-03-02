@@ -12,7 +12,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTest
 {		
-	TEST_CLASS(UnitTest)
+	TEST_CLASS(Point)
 	{
 	public:
 		
@@ -49,7 +49,7 @@ namespace UnitTest
 			Assert::AreEqual(dist2, 2.0f);
 		}
 		
-		TEST_METHOD(suma)
+		TEST_METHOD(Addition)
 		{
 			Point2d a;
 			Point2d b;
@@ -66,7 +66,7 @@ namespace UnitTest
 
 		}
 
-		TEST_METHOD(resta)
+		TEST_METHOD(Substraction)
 		{
 			Point2d a;
 			Point2d b;
@@ -83,7 +83,7 @@ namespace UnitTest
 
 		}
 
-		TEST_METHOD(increase)
+		TEST_METHOD(Increase)
 		{
 			Point2d a;
 			Point2d b;
@@ -100,7 +100,7 @@ namespace UnitTest
 
 		}
 
-		TEST_METHOD(decrease)
+		TEST_METHOD(Decrease)
 		{
 			Point2d a;
 			Point2d b;
@@ -136,5 +136,62 @@ namespace UnitTest
 			bool diff = pt.operator!=(punt);
 			Assert::IsFalse(diff);
 		}
+	};
+
+	TEST_CLASS(Chain)
+	{
+	public:
+
+		TEST_METHOD(Clear)
+		{
+			String cad ("Hello world :D");
+			cad.Clear();
+
+			Assert::AreEqual(cad.Length(), 0);
+		}
+
+		TEST_METHOD(Length)
+		{
+			String cad("Hello world :D");
+
+			Assert::AreEqual(cad.Length(), 14);
+		}
+
+		TEST_METHOD(Capacity)
+		{
+			String cad("Hello world :D");
+
+			Assert::AreEqual(cad.Capacity(), 15);
+		}
+		
+		TEST_METHOD(VoidConstructor)
+		{
+			String cad;
+
+			Assert::AreEqual(cad.Length(), 0);
+			Assert::AreEqual(cad.Capacity(), 1);
+		}
+
+
+		TEST_METHOD(ConstructorFromStringClass)
+		{
+			String cad("%s%s", "Hi ", "there");
+			String c(cad);
+
+			Assert::AreEqual(cad.Length(), c.Length());
+		}
+
+		TEST_METHOD(ConstructorFromFormat)
+		{
+			String cad("%s%s","Hi ","there");
+			String c(NULL);
+
+			Assert::AreEqual(cad.GetString(), "Hi there");
+			Assert::AreEqual(c.GetString(), "");
+
+		}
+
+
+
 	};
 }
