@@ -21,6 +21,7 @@ private:
 		str = new char[size];
 
 	}
+
 	void Clear(){
 
 		str[0] = '\0';
@@ -28,12 +29,22 @@ private:
 
 public:
 
-	//Constructors
+	//Constructors:
+
 	String(){
 
 		size = 1;
 		str = new char[size];
 		str[0] = '\0';
+
+		/* This code would do the same as:
+			
+			Alloc (1);
+			Clear ();
+		So it keeps the same memory and clears the string
+
+		*/
+		
 	}
 
 	String(const char* cadena){
@@ -56,24 +67,26 @@ public:
 		if (format != NULL)
 		{
 			char tmp[TMP_SIZE];
-			va_list ap;
+			va_list args;
 
-			va_start(ap, format);
-			int res = vsprintf_s(tmp, TMP_SIZE, format, ap);
-			va_end(ap);
+			va_start(args, format);
+			int res = vsprintf_s(tmp, TMP_SIZE, format, args);
+			va_end(args);
+
 			if (res > 0)
 			{
 				Alloc(res + 1);
 				strcpy_s(str, size, tmp);
 			}
 		}
+
 		if (size == 0)
 		{
 			Alloc(1);
 			Clear();
 		}
 	}
-
+	/*
 //Operators
 
 	bool operator== (const String& cadena) const{
@@ -129,7 +142,7 @@ public:
 		str[0] = '\0';
 	}
 
-
+	*/
 
 	//Destructor
 	virtual	~String()

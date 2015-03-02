@@ -69,7 +69,7 @@
     <ClInclude Include="String.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Log.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Point2d.cpp" />
     <ClCompile Include="String.cpp" />
   </ItemGroup>
