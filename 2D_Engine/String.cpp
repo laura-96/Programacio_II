@@ -58,3 +58,65 @@ String::String(const char *format, ...)
 		Clear();
 	}
 }
+
+//Operators:
+
+
+bool String::operator== (const String& cadena) const{
+
+	return strcmp(cadena.str, str) == 0;
+}
+
+
+bool String::operator== (const char* cadena) const{
+
+	return strcmp(cadena, str) == 0;
+}
+
+
+bool String::operator!= (const String& cadena) const{
+
+	return strcmp(cadena.str, str) == 1;
+}
+
+
+bool String::operator!= (const char* cadena) const{
+
+	return strcmp(cadena, str) == 1;
+}
+
+
+String& String::operator= (const char* cadena) {
+
+	if (str != NULL){
+		if (strlen(cadena) + 1 < size){
+			delete[] str;
+			Alloc(strlen(cadena) + 1);
+		}
+
+		strcpy_s(str, size, cadena);
+	}
+	else
+	{
+		Clear();
+	}
+	return (*this);
+}
+
+
+String& String::operator= (const String& cadena) {
+
+	if (cadena.Length() + 1 > size){
+
+		delete[] str;
+		Alloc(strlen(cadena.str) + 1);
+		strcpy_s(str, size, cadena.GetString());
+	}
+
+
+	else
+	{
+		Clear();
+	}
+	return (*this);
+}

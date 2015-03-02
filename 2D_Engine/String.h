@@ -49,53 +49,12 @@ public:
 
 	//Operators
 
-	bool operator== (const String& cadena) const{
-
-		return strcmp(cadena.str, str) == 0;
-	}
-
-	bool operator== (const char* cadena) const{
-
-		return strcmp(cadena, str) == 0;
-	}
-
-
-	
-	String& operator= (const char* cadena) {
-
-		if (str != NULL){
-			if (strlen(cadena) + 1 < size){
-				delete[] str;
-				Alloc(strlen(cadena) + 1);
-			}
-
-			strcpy_s(str, size, cadena);
-		}
-		else
-		{
-			Clear();
-		}
-		return (*this);
-	}
-
-	
-	String& operator= (const String& cadena) {
-
-		if (cadena.Length() + 1 > size){
-
-			delete[] str;
-			Alloc(strlen(cadena.str) + 1);
-			strcpy_s(str, size, cadena.GetString());
-		}
-
-	
-		else
-		{
-			Clear();
-		}
-		return (*this);
-}
-
+	bool operator== (const String& cadena) const;
+	bool operator== (const char* cadena) const;
+	bool operator!= (const String& cadena) const;
+	bool operator!= (const char* cadena) const;
+	String& operator= (const char* cadena);
+	String& operator= (const String& cadena);
 
 
 	//Destructor

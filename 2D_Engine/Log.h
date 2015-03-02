@@ -28,11 +28,9 @@ public:
 
 
 		static va_list args; // It collects all the arguments
-
-		sprintf_s(buffer_b, 5000, "\n%s(%d) - Message: %s\n", file, line, buffer_a);
-		OutputDebugString(buffer_b);
-
+		
 		va_start(args, format);
+		
 		nSize = vsnprintf_s(buffer_a, _countof(buffer_a), _TRUNCATE, format, args);
 		if (nSize < 0)
 		{
