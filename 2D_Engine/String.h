@@ -43,7 +43,7 @@ public:
 	//Constructors:
 
 	String();
-	String(String& cadena);
+	String(const String& cadena);
 	String(const char *format, ...);
 
 	//Operators
@@ -54,7 +54,8 @@ public:
 	bool operator!= (const char* cadena) const;
 	String& operator= (const char* cadena);
 	String& operator= (const String& cadena);
-
+	String& operator+= (const char* cadena);
+	String& operator+= (const String& cadena);
 
 	//Destructor
 	virtual	~String()

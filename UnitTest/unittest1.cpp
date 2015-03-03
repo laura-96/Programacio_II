@@ -11,11 +11,11 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTest
-{		
+{
 	TEST_CLASS(Point)
 	{
 	public:
-		
+
 		TEST_METHOD(SetZero)
 		{
 			Point2d punt;
@@ -44,11 +44,11 @@ namespace UnitTest
 			c.y = 0;
 			float dist1 = a.DistanceTo(b);
 			float dist2 = a.DistanceTo(c);
-			
+
 			Assert::AreEqual(dist1, 0.0f);
 			Assert::AreEqual(dist2, 2.0f);
 		}
-		
+
 		TEST_METHOD(Addition)
 		{
 			Point2d a;
@@ -58,7 +58,7 @@ namespace UnitTest
 			a.y = 0;
 			b.x = 4;
 			b.y = (-3);
-			
+
 			Point2d sum = a.operator+(b);
 
 			Assert::AreEqual(sum.x, 6.0f);
@@ -144,7 +144,7 @@ namespace UnitTest
 
 		TEST_METHOD(Clear)
 		{
-			String cad ("Hello world :D");
+			String cad("Hello world :D");
 			cad.Clear();
 
 			Assert::AreEqual(cad.Length(), 0);
@@ -163,7 +163,16 @@ namespace UnitTest
 
 			Assert::AreEqual(cad.Capacity(), 15);
 		}
-		
+
+		TEST_METHOD(GetString)
+		{
+			String cad("Hello world :D");
+			String c(NULL);
+
+			Assert::AreEqual(cad.GetString(), "Hello world :D");
+			Assert::AreEqual(c.GetString(), "");
+		}
+
 		TEST_METHOD(VoidConstructor)
 		{
 			String cad;
@@ -183,11 +192,97 @@ namespace UnitTest
 
 		TEST_METHOD(ConstructorFromFormat)
 		{
-			String cad("%s%s","Hi ","there");
+			String cad("%s%s", "Hi ", "there");
 			String c(NULL);
 
 			Assert::AreEqual(cad.GetString(), "Hi there");
 			Assert::AreEqual(c.GetString(), "");
+
+		}
+
+		TEST_METHOD(EqualStrings)
+		{
+			String cad("Hello");
+			String c("Hi");
+			String string("Hi");
+			String Null(NULL);
+
+			bool equal = c.operator==(cad);
+			bool eq = c.operator==(string);
+			bool comp = c.operator==(Null);
+
+			Assert::IsFalse(equal && comp);
+			Assert::IsTrue(eq);
+
+		}
+
+		TEST_METHOD(EqualStringsFromClassString)
+		{
+			String cad("Hello");
+			String c(cad);
+			String string("Hi");
+
+			bool equal = c.operator==(cad);
+			bool eq = c.operator==(string);
+
+			Assert::IsTrue(equal);
+			Assert::IsFalse(eq);
+
+		}
+
+		TEST_METHOD(DifferentStrings)
+		{
+			String cad("Hello");
+			String c("Hi");
+			String string("Hi");
+			String Null(NULL);
+
+			bool different = c.operator!=(cad);
+			bool dif = c.operator!=(string);
+			bool comp = c.operator!=(Null);
+
+			Assert::IsTrue(different && comp);
+			Assert::IsFalse(dif);
+
+		}
+
+		TEST_METHOD(DifferentStringsFromClassString)
+		{
+			String cad("Hello");
+			String c(cad);
+			String string("Hi");
+
+			bool equal = c.operator==(cad);
+			bool eq = c.operator==(string);
+
+			Assert::IsTrue(equal);
+			Assert::IsFalse(eq);
+
+		}
+
+
+		TEST_METHOD(StringAssignation)
+		{
+			String cad("Hello");
+			String c("Hi");
+
+			c.operator=(cad);
+
+			Assert::AreEqual(cad.Length(), c.Length());
+			Assert::AreEqual(cad.GetString(), c.GetString());
+
+		}
+
+		TEST_METHOD(StringAssignationFromClassString)
+		{
+			String cad("Hello");
+			String c("Hi");
+			String string(c);
+
+			string.operator=(cad);
+
+			Assert::AreEqual(cad.Length(), string.Length());
+			Assert::AreEqual(cad.GetString(), string.GetString());
 
 		}
 

@@ -20,11 +20,12 @@ String::String(){
 }
 
 
-String::String(String& cadena){
+String::String(const String& cadena){
 
-	size = 1;
-	size += strlen(cadena.str);
-	str = new char[size];
+	size = 0;
+	str = NULL;
+	Alloc(cadena.size);
+	memcpy(str, cadena.str, cadena.size + 1); //Copies block of memory
 }
 
 String::String(const char *format, ...)
@@ -70,13 +71,13 @@ bool String::operator== (const char* cadena) const{
 
 bool String::operator!= (const String& cadena) const{
 
-	return strcmp(cadena.str, str) == 1;
+	return strcmp(cadena.str, str) != 0;
 }
 
 
 bool String::operator!= (const char* cadena) const{
 
-	return strcmp(cadena, str) == 1;
+	return strcmp(cadena, str) != 0;
 }
 
 
@@ -113,4 +114,26 @@ String& String::operator= (const String& cadena) {
 		Clear();
 	}
 	return (*this);
+}
+
+String& String::operator+=(const String& cadena){
+
+	Alloc(cadena.Length() + 1);
+	memcpy((str + size), cadena.str, cadena.size + 1);
+	size += cadena.size;
+	return (*this);
+
+}
+
+String& String::operator+=(const char* cadena){
+
+	if (cadena != NULL){
+
+		Alloc(strlen(cadena) + 1);
+		memcpy((str + size), cadena, strlen(cadena) + 1);
+		size += strlen(cadena);
+
+	}
+	return (*this);
+
 }
