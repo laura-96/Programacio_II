@@ -116,24 +116,44 @@ String& String::operator= (const String& cadena) {
 	return (*this);
 }
 
-String& String::operator+=(const String& cadena){
 
-	Alloc(cadena.Length() + 1);
-	memcpy((str + size), cadena.str, cadena.size + 1);
-	size += cadena.size;
+
+String& String::operator+= (const String& cadena){
+	
+	String string;
+	String& tmp(string);
+
+	tmp.Alloc(strlen(str) + 1);
+	strcpy_s(tmp.str, strlen(str) + 1, str);
+
+	Alloc(strlen(cadena.str) + tmp.size + 1); //We reserve memory for both sentences		
+
+	strcpy_s(str, strlen(tmp.str) + tmp.size + 1, tmp.str);
+
+	strcat_s(str, strlen(cadena.str) + tmp.size + 1, cadena.str);
+
+
 	return (*this);
-
 }
 
-String& String::operator+=(const char* cadena){
 
-	if (cadena != NULL){
+String& String::operator+= (const char* cadena){
+	
+	if (cadena != NULL)
+	{
 
-		Alloc(strlen(cadena) + 1);
-		memcpy((str + size), cadena, strlen(cadena) + 1);
-		size += strlen(cadena);
+		String tmp;
+
+		tmp.Alloc(strlen(str) + 1);
+		strcpy_s(tmp.str, strlen(str) + 1, str);
+
+		Alloc(strlen(cadena) + tmp.size + 1);
+
+		strcpy_s(str, strlen(tmp.str) + tmp.size + 1, tmp.str);
+
+		strcat_s(str, strlen(cadena) + tmp.size + 1, cadena);
+
 
 	}
 	return (*this);
-
 }

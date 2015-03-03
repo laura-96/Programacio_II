@@ -273,6 +273,7 @@ namespace UnitTest
 
 		}
 
+
 		TEST_METHOD(StringAssignationFromClassString)
 		{
 			String cad("Hello");
@@ -286,6 +287,37 @@ namespace UnitTest
 
 		}
 
+		TEST_METHOD(Concat)
+		{
+			String cad("Hello");
+			String c("Hello");
+			String string(NULL);
+			String s("Hello");
+
+			cad.operator+=(c);
+			string.operator+=(s);
+
+			Assert::AreEqual(cad.Length(), 10);
+			Assert::AreEqual(cad.GetString(),"HelloHello");
+			
+			Assert::AreEqual(string.Length(), 5);
+			Assert::AreEqual(string.GetString(), "Hello");
+
+		}
+		
+
+		TEST_METHOD(ConcatFromClassString)
+		{
+			String cad("Hello");
+			String c("Hi");
+			String string(c);
+
+			string.operator+=(cad);
+
+			Assert::AreEqual(string.Length(), 7);
+			Assert::AreEqual(string.GetString(), "HiHello");
+
+		}
 
 
 	};
